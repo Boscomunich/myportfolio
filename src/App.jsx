@@ -6,6 +6,7 @@ import Services from './component/Services'
 import Tech from './component/Tech'
 import Work from './component/Work'
 import Contact from './component/Contact'
+import { StarCanvas } from './canvas'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Tech/>
         <div className='relative z-0'>
           <Contact/>
+          <StarCanvas/>
         </div>
       </div>
     </BrowserRouter>
