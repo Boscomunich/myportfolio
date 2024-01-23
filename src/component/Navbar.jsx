@@ -1,93 +1,67 @@
-import { useState, useEffect} from 'react';
-import { NavLink } from 'react-router-dom';
-import { styles } from '../styles';
-import { logo, menu, cancel } from '../assets';
+import { useState } from 'react';
+import { HashLink } from 'react-router-hash-link';
+import { logo } from '../assets';
 import { links } from '../Constant'
 import { motion } from 'framer-motion';
 import profile from '../assets/profile.png'
-import { fadeIn, slideIn } from '../utils/motion';
-import SectionWrapper from '../Hoc/SectionWrapper';
+import { slideIn } from '../utils/motion';
 
-const MobileNav = ({toggled}) => {
-    const[Active, setActive] = useState('')
-    return(
-        <div className='h-screen w-screen block'>
-            <img src={cancel} 
-            className='h-[18px] w-[18px] ml-[83vw] mt-[4vh] cursor-pointer'
-            onClick={() => toggled(false)}/>
-            <motion.div
-            variants={slideIn('left', 'spring', 0, 1)}
-            initial='hidden'
-            animate='show'
-            className='h-[50%] w-[100%] flex flex-col items-center justify-center'>
-                <img src={profile} className='h-[100px] w-[100px] rounded-full'/>
-                <br/>
-                <p className='text-secondary'>Chidera Obuegbe</p>
-            </motion.div>
-            <motion.div
-            variants={slideIn('right', 'spring', 0, 1)}
-            initial='hidden'
-            animate='show'>
-                <ul className='list-non flex flex-col gap-10 justify-center items-center'>
-                    {links.map((link) => (
-                        <li 
-                        key={link.id}
-                        onClick={() => setActive(link.title)
-                        }
-                        className={`${Active === link.title ? 'text-white' : 'text-rare'} px-3 group text-rare transition duration-300`}>
-                            <a href={`#${link.title}`}>{link.title}</a>
-                            <span className="block rounded-xl max-w-0 group-hover:max-w-full transition-all duration-300 h-[3px] bg-secondary text-white"></span>
-                        </li>
-                    ))
-                    }
-                </ul>
-            </motion.div>
-        </div>
-    )
-}
 
 const Navbar = () => {
     const[Active, setActive] = useState('')
     const[toggle, setToggle] = useState(false)
 
-    const toggled = (toggled) => {
-        toggled ?
-        setToggle(true)
-        :setToggle(false)
-    }
     return (
         <nav
-        className={`${styles.paddingX} w-full flex items-center py-2 fixed top-0 z-20 bg-primary`}>
-            { !toggle ?
-            <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
-                <NavLink to='/'
+        className={`w-[100vw] items-center py-5 fixed top-0 z-20 bg-primary`}>
+            <div className='w-[100%] flex justify-between items-center max-w-7xl z-10 px-5'>
+                <HashLink to='/'
                 className='flex items-center gap-2'
                 onClick={() => {setActive('');
                 window.scrollTo(0,0)}}>
-                    <img src={logo} alt='logo' className='w-16 h-16 object-contain stroke-1' />
-                    <p className='text-2xl cursor-pointer'>Boscomunich</p>
-                </NavLink>
-                <ul className='list-non flex gap-10 sm:hidden'>
+                    <img src={logo} alt='logo' className='sm:w-10 sm:h-10 w-16 h-16 object-contain stroke-1' />
+                    <p className='text-2xl cursor-pointer sm:text-xl'>Boscomunich</p>
+                </HashLink>
+                <ul className='list-none flex gap-10 sm:hidden z-40'>
                     {links.map((link) => (
-                        <li key={link.id}
+                        <HashLink key={link.id}
+                        to={`#${link.title}`}
                         onClick={() => setActive(link.title)}
-                        className={`${Active === link.title ? 'text-white' : 'text-rare'} px-3 group text-rare transition duration-300`}>
-                            <a href={`#${link.title}`}>{link.title}</a>
-                            <span className="block rounded-xl max-w-0 group-hover:max-w-full transition-all duration-300 h-[3px] bg-secondary text-white"></span>
-                        </li>
+                        className={`${Active === link.title ? 'text-white' : 'text-rare'} px-3 group text-rare transition `}>
+                            <a className='relative after:-left-5 after:content-[""] after:absolute after:h-[3px] after:bg-secondary after:w-[0%] after:-bottom-[0px] hover:after:w-[170%] after:transition-all after:duration-500'>{link.title}</a>
+                        </HashLink>
                     ))
                     }
                 </ul>
-                <div className='relative lg:hidden sm:flex'>
-                    <div className='lg:hidden sm:block'>
-                        <img src={ menu } 
-                        height='24' width='24'
-                        className='cursor-pointer'
-                        onClick={() => toggled(true)}/>
-                    </div>
+                <div onClick={()=>setToggle(!toggle)} className={`${toggle ?` w-6 h-[3px] rounded  top-0 mt-1 transition-all relative -translate-x-15 before:content-[""] before:bg-white before:w-6 before:h-[3px] before:rounded  before:absolute before:translate-y-0 before:rotate-45 before:duration-500 after:content-[""] after:bg-white after:w-6 after:h-[3px] after:rounded after:absolute after:translate-y-0 after:-rotate-45 after:duration-500 bg-transparent cursor-pointer lg:hidden` : `bg-white w-6 h-[3px] rounded  top-0 mt-1 transition-all relative -translate-x-15 before:content-[""] before:bg-white before:w-6 before:h-[3px] before:rounded  before:absolute before:-translate-y-2 before:duration-500 after:content-[""] after:bg-white after:w-6 after:h-[3px] after:rounded after:absolute after:translate-y-2 after:duration-500 cursor-pointer lg:hidden`} ` }>
                 </div>
             </div>
-            : <MobileNav toggled={toggled}/>}
+            <div className={`${toggle ? 'block' : 'hidden'} lg:hidden`}>
+                <div className='flex flex-col items-center justify-center'>
+                    <motion.div
+                    className='w-full h-[40vh] flex flex-col items-center justify-center bg-tertiary'
+                    variants={slideIn('left', 'tween', 0, 0.5)}
+                    initial='hidden'
+                    animate={ toggle ? 'show' : 'hidden'}>
+                        <img src={profile} className='h-[20vh] w-[20vh] rounded-full'/>
+                    </motion.div>
+                    <motion.div
+                    className='w-full h-[60vh] flex flex-col gap-7 items-center pt-5'
+                    variants={slideIn('right', 'tween', 0, 0.5)}
+                    initial='hidden'
+                    animate={ toggle ? 'show' : 'hidden'}>
+                        {links.map((link) => (
+                                <HashLink key={link.id}
+                                onClick={()=>setToggle(!toggle)}
+                                to={`#${link.title}`}
+                                className={`list-none px-3 group text-rare transition w-50 `}>
+                                    <a className='relative after:-left-5 after:content-[""] after:absolute after:h-[3px] after:bg-secondary after:w-[0%] after:-bottom-[0px] hover:after:w-[170%] after:transition-all after:duration-500' >{link.title}</a>
+                                </HashLink>
+                            ))
+                            }
+                    </motion.div>
+                </div>
+            </div>
         </nav>
     );
 };

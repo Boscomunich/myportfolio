@@ -22,10 +22,17 @@ import cancel from './cancel.png';
 import facebook from './social-media/facebook.png';
 import instagram from './social-media/instagram.png';
 import linkedin from './social-media/linkedin.png';
-import whatsapp from './social-media/whatsapp.png';
+import github2 from './social-media/github-sign.png';
 import twitter from './social-media/twitter.png';
 import alx from './company/alx.jpg';
 import ztm from './company/ztm.jpg';
+import illustration from './illustration.svg'
+import flutter from './tech/flutter.png'
+import dart from './tech/dart.png'
+import postgresql from './tech/postgresql.png'
+import pricy from './pricy.png'
+import webbase from './webbase-shot.png'
+import link from './link.png'
 
 
 export{
@@ -52,9 +59,16 @@ export{
     cancel,
     instagram,
     linkedin,
-    whatsapp,
+    github2,
     twitter,
     facebook,
     alx,
-    ztm
+    ztm,
+    illustration,
+    postgresql,
+    flutter,
+    dart,
+    pricy,
+    webbase,
+    link
 };

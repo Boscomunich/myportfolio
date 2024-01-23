@@ -14,15 +14,19 @@ import {
   git,
   figma,
   threejs,
-  docker,
   python,
   facebook,
   instagram,
   twitter,
   linkedin,
-  whatsapp,
   alx,
-  ztm
+  ztm,
+  github2,
+  postgresql,
+  flutter,
+  dart,
+  pricy,
+  webbase
 } from "../assets";
 
 const services = [
@@ -39,7 +43,7 @@ const services = [
   {
     title: "Backend Developer",
     icon: backend,
-    description:'I build fast api that is scaled according to your demand'
+    description:'I build and maintain custom backend'
   },
 ];
 
@@ -112,35 +116,53 @@ const technologies = [
     icon: figma,
   },
   {
-    name: "Docker",
-    icon: docker,
+    name: "Flutter",
+    icon: flutter,
   },
   {
     name:'Python',
     icon:python
-  }
+  },
+  {
+    name: "Dart",
+    icon: dart,
+  },
+  {
+    name: "Postgresql",
+    icon: postgresql,
+  },
 ];
 
 const socials = [
   {
     name: 'Facebook',
-    icon: facebook
+    icon: facebook,
+    link: 'https://www.facebook.com/boscomunich',
+    bg: '#3b5998'
   },
   {
     name: 'Instagram',
-    icon: instagram
+    icon: instagram,
+    link: 'https://www.instagram.com/boscomunich?igsh=MzNINGNkZWQ4Mg==',
+    bg: '#c32aa3'
   },
   {
     name: 'Linkedin',
-    icon: linkedin
+    icon: linkedin,
+    link: 'https://www.linkedin.com/in/chidera-obuegbe-ab46b225b/?originalSubdomain=ng',
+    bg: '#007bb5'
   },
   {
-    name: 'WhatsApp',
-    icon: whatsapp
+    name: 'Github',
+    icon: github2,
+    link: 'https://github.com/Boscomunich',
+    bg: '#4078c0'
   },
   {
     name: 'Twitter',
-    icon: twitter
+    icon: twitter,
+    link: 'https://twitter.com/ChideraObuegbe',
+    bg: '#1da1f2'
   }
 ];
 
@@ -173,6 +195,23 @@ const experiences = [
   },
 ];
 
+const project = [
+  {
+    name: 'WebBase',
+    github: 'https://github.com/Boscomunich/myagency',
+    link: 'https://myagency-sigma.vercel.app',
+    description: 'My web dev agency website',
+    icon: webbase
+  },
+  {
+    name: 'Pricy',
+    github: '',
+    link: '',
+    description: 'A website that helps users monitor product prices on amazon website',
+    icon: pricy
+  }
+]
 
 
-export { services, technologies, links, socials, experiences};
+
+export { services, technologies, links, socials, experiences, project};

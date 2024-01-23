@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -8,7 +8,23 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: "Roboto";
     scroll-behavior: smooth;
     color-scheme: dark;
+}
+
+.ul {
+    list-style: none;
+}
+
+.ul li::before {
+    content: "";
+    border-style: solid;
+    border-width: 5px 0 5px 10px;
+    /* Adjust size as needed */
+    border-color: transparent transparent transparent #37A2D0;
+    /* Adjust color as needed */
+    display: inline-block;
+    margin-right: 10px;
+    /* Adjust spacing as needed */
 }
