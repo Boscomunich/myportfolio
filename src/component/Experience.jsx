@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { experiences } from '../Constant';
 import { SectionWrapper } from '../Hoc';
 import { textVariant } from "../utils/motion";
+import Divider from "./reusables/Divider";
 
 const ExperienceCard = ({ experience }) => (
     <VerticalTimelineElement
@@ -38,19 +39,7 @@ const ExperienceCard = ({ experience }) => (
 const Experience = () => {
     return (
         <>
-            <motion.div
-            variants={textVariant()}>
-                <p className="text-center text-[24px] font-bold sm:font-medium sm:text-[16px]">
-                    My Experience
-                </p>
-                <div className="absolute flex justify-center w-[20%] sm:w-[40%] h-[20px] left-[40%] sm:left-[30%] items-center ">
-                    <div className="h-[10px] border-secondary border-[2px] w-[35%] bg-secondary "></div>
-                    <div className="h-[20px] border-secondary border-[2px] w-[30%] bg-secondary">
-                    </div>
-                    <div className="h-[10px] border-secondary border-[2px] w-[35%] bg-secondary ">
-                    </div>
-                </div>
-            </motion.div>
+            <Divider>Experience</Divider>
             <div className="mt-20 flex flex-col">
                 <VerticalTimeline contentStyle>
                     {experiences.map((experience, index) => (

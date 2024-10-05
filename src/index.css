@@ -13,18 +13,54 @@
     color-scheme: dark;
 }
 
-.ul {
-    list-style: none;
-}
+@layer utilities {
 
-.ul li::before {
-    content: "";
-    border-style: solid;
-    border-width: 5px 0 5px 10px;
-    /* Adjust size as needed */
-    border-color: transparent transparent transparent #37A2D0;
-    /* Adjust color as needed */
-    display: inline-block;
-    margin-right: 10px;
-    /* Adjust spacing as needed */
+    .active {
+        @apply text-secondary;
+    }
+    .g8 {
+    background: linear-gradient(to right, transparent, #ecb34a, transparent);
+    }
+
+    .g4 {
+        background: linear-gradient(#253575, #162561);
+    }
+
+    .glow-before {
+        @apply before:g8 before:absolute before:left-0 before:top-0 before:z-10 before:h-0.5 before:w-3/5 before:opacity-0 before:transition-all before:duration-500 before:content-[''] group-hover:before:left-8 group-hover:before:opacity-40;
+    }
+
+    .glow-after {
+        @apply after:g8 after:absolute after:bottom-0 after:right-0 after:z-10 after:h-0.5 after:w-3/5 after:opacity-0 after:transition-all after:duration-500 after:content-[''] group-hover:after:right-8 group-hover:after:opacity-40;
+    }
+
+    .faq-line_after {
+    @apply after:absolute after:-top-1.5 after:left-[calc(50%-5px)] after:z-4 after:size-2.5 after:rounded-half after:border-2 after:border-s2 after:bg-s1 after:content-[''];
+    }
+
+    .faq-glow_before {
+        @apply before:absolute before:left-[calc(50%-160px)] before:top-[-160px] before:size-[320px] before:bg-rare before:mix-blend-soft-light before:blur-[200px] before:content-[''];
+    }
+
+    .faq-icon {
+        @apply before:absolute before:h-0.5 before:w-3 before:bg-secondary before:content-[''] after:absolute after:h-0.5 after:w-3 after:rotate-90 after:bg-secondary after:transition-all after:duration-500 after:content-[''];
+    }
+
+    .card-wrapper {
+        @apply relative z-10 overflow-hidden rounded-xl
+    }
+    .card-wrapper::before {
+        background: conic-gradient(
+            rgba(159, 26, 195, 0.4) 0deg,
+            rgba(218, 22, 242, 0.4) 0deg,
+            transparent 60deg
+        );
+
+        @apply absolute h-[150%] w-[150%] left-[-25%] top-[-25%] content-[''] animate-border-spin z-[-1]
+    }
+
+    .card-content {
+        @apply w-full h-full bg-rare rounded-xl 
+    }
+
 }

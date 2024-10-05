@@ -19,11 +19,6 @@ import mobile from './mobile.png';
 import logo from './logo.png';
 import menu from './menu.png';
 import cancel from './cancel.png';
-import facebook from './social-media/facebook.png';
-import instagram from './social-media/instagram.png';
-import linkedin from './social-media/linkedin.png';
-import github2 from './social-media/github-sign.png';
-import twitter from './social-media/twitter.png';
 import alx from './company/alx.jpg';
 import ztm from './company/ztm.jpg';
 import illustration from './illustration.svg'
@@ -57,11 +52,6 @@ export{
     logo,
     menu,
     cancel,
-    instagram,
-    linkedin,
-    github2,
-    twitter,
-    facebook,
     alx,
     ztm,
     illustration,

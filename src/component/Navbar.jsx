@@ -1,69 +1,199 @@
-import { useState } from 'react';
-import { HashLink } from 'react-router-hash-link';
-import { logo } from '../assets';
-import { links } from '../Constant'
-import { motion } from 'framer-motion';
-import profile from '../assets/profile.png'
+import { useEffect, useState } from 'react';
+import { MotionConfig, motion, useScroll, useMotionValue, useMotionValueEvent, AnimatePresence } from "framer-motion";
+import { links } from '../Constant';
+import {Link as ScrollLink} from 'react-scroll'
+import { illustration, logo } from '../assets'
 import { slideIn } from '../utils/motion';
+import clsx from 'clsx';
 
+const VARIANTS = {
+    top: {
+        open: {
+        rotate: ["0deg", "0deg", "45deg"],
+        top: ["35%", "50%", "50%"],
+        },
+        closed: {
+        rotate: ["45deg", "0deg", "0deg"],
+        top: ["50%", "50%", "35%"],
+        },
+    },
+    middle: {
+        open: {
+        rotate: ["0deg", "0deg", "-45deg"],
+        },
+        closed: {
+        rotate: ["-45deg", "0deg", "0deg"],
+        },
+    },
+    bottom: {
+        open: {
+        rotate: ["0deg", "0deg", "45deg"],
+        bottom: ["35%", "50%", "50%"],
+        left: "50%",
+        },
+        closed: {
+        rotate: ["45deg", "0deg", "0deg"],
+        bottom: ["50%", "50%", "35%"],
+        left: "calc(50% + 10px)",
+        },
+    },
+    foldNav: {
+        visible:{y: 0},
+        folded: {y: "-100%"}
+    },
+};
+
+
+const AnimatedHamburgerButton = ({active, setActive}) => {
+    return (
+        <MotionConfig
+        transition={{
+            duration: 0.5,
+            ease: "easeInOut",
+        }}
+        >
+        <motion.button
+            initial={false}
+            animate={active ? "open" : "closed"}
+            onClick={() => setActive((pv) => !pv)}
+            className="relative lg:hidden h-16 w-16 rounded-full bg-white/0 transition-colors"
+        >
+            <motion.span
+            variants={VARIANTS.top}
+            className="absolute h-1 w-10 bg-white"
+            style={{ y: "-50%", left: "50%", x: "-50%", top: "35%" }}
+            />
+            <motion.span
+            variants={VARIANTS.middle}
+            className="absolute h-1 w-10 bg-white"
+            style={{ left: "50%", x: "-50%", top: "50%", y: "-50%" }}
+            />
+            <motion.span
+            variants={VARIANTS.bottom}
+            className="absolute h-1 w-5 bg-white"
+            style={{
+                x: "-50%",
+                y: "50%",
+                bottom: "35%",
+                left: "calc(50% + 10px)",
+            }}
+            />
+        </motion.button>
+        </MotionConfig>
+    );
+};
 
 const Navbar = () => {
-    const[Active, setActive] = useState('')
-    const[toggle, setToggle] = useState(false)
+    const[active, setActive] = useState('')
+    const[isMobile, setIsMobile] = useState(false)
+    const[hidden, setHidden] = useState(false)
+    const { scrollY } = useScroll()
+
+    useEffect(() => {
+        const handleResize = () => {
+        const screenWidth = window.innerWidth;
+        console.log(screenWidth);
+        if (screenWidth <= 767) {
+            setIsMobile(true);
+        } else {
+            setIsMobile(false);
+        }
+        };
+
+        // Initial check
+        handleResize();
+
+        // Add event listener
+        window.addEventListener("resize", handleResize);
+
+        // Cleanup event listener on component unmount
+        return () => {
+        window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const prevValue = scrollY.getPrevious();
+        if (latest > prevValue && latest > 150) {
+            setHidden(true)
+        } else {
+            setHidden(false)
+        }
+    })
 
     return (
-        <nav
-        className={`w-[100vw] items-center py-5 fixed top-0 z-20 bg-primary`}>
-            <div className='w-[100%] flex justify-between items-center max-w-7xl z-10 px-5'>
-                <HashLink to='/'
-                className='flex items-center gap-2'
-                onClick={() => {setActive('');
-                window.scrollTo(0,0)}}>
-                    <img src={logo} alt='logo' className='sm:w-10 sm:h-10 w-16 h-16 object-contain stroke-1' />
-                    <p className='text-2xl cursor-pointer sm:text-xl'>Boscomunich</p>
-                </HashLink>
-                <ul className='list-none flex gap-10 sm:hidden z-40'>
-                    {links.map((link) => (
-                        <HashLink key={link.id}
-                        to={`#${link.title}`}
-                        onClick={() => setActive(link.title)}
-                        className={`${Active === link.title ? 'text-white' : 'text-rare'} px-3 group text-rare transition `}>
-                            <a className='relative after:-left-5 after:content-[""] after:absolute after:h-[3px] after:bg-secondary after:w-[0%] after:-bottom-[0px] hover:after:w-[170%] after:transition-all after:duration-500'>{link.title}</a>
-                        </HashLink>
-                    ))
-                    }
-                </ul>
-                <div onClick={()=>setToggle(!toggle)} className={`${toggle ?` w-6 h-[3px] rounded  top-0 mt-1 transition-all relative -translate-x-15 before:content-[""] before:bg-white before:w-6 before:h-[3px] before:rounded  before:absolute before:translate-y-0 before:rotate-45 before:duration-500 after:content-[""] after:bg-white after:w-6 after:h-[3px] after:rounded after:absolute after:translate-y-0 after:-rotate-45 after:duration-500 bg-transparent cursor-pointer lg:hidden` : `bg-white w-6 h-[3px] rounded  top-0 mt-1 transition-all relative -translate-x-15 before:content-[""] before:bg-white before:w-6 before:h-[3px] before:rounded  before:absolute before:-translate-y-2 before:duration-500 after:content-[""] after:bg-white after:w-6 after:h-[3px] after:rounded after:absolute after:translate-y-2 after:duration-500 cursor-pointer lg:hidden`} ` }>
-                </div>
-            </div>
-            <div className={`${toggle ? 'block' : 'hidden'} lg:hidden`}>
-                <div className='flex flex-col items-center justify-center'>
-                    <motion.div
-                    className='w-full h-[40vh] flex flex-col items-center justify-center bg-tertiary'
-                    variants={slideIn('left', 'tween', 0, 0.5)}
-                    initial='hidden'
-                    animate={ toggle ? 'show' : 'hidden'}>
-                        <img src={profile} className='h-[20vh] w-[20vh] rounded-full'/>
-                    </motion.div>
-                    <motion.div
-                    className='w-full h-[60vh] flex flex-col gap-7 items-center pt-5'
-                    variants={slideIn('right', 'tween', 0, 0.5)}
-                    initial='hidden'
-                    animate={ toggle ? 'show' : 'hidden'}>
-                        {links.map((link) => (
-                                <HashLink key={link.id}
-                                onClick={()=>setToggle(!toggle)}
-                                to={`#${link.title}`}
-                                className={`list-none px-3 group text-rare transition w-50 `}>
-                                    <a className='relative after:-left-5 after:content-[""] after:absolute after:h-[3px] after:bg-secondary after:w-[0%] after:-bottom-[0px] hover:after:w-[170%] after:transition-all after:duration-500' >{link.title}</a>
-                                </HashLink>
+        <>
+            <motion.section 
+            variants={VARIANTS.foldNav}
+            animate={hidden ? "folded" : 'visible'}
+            transition={{duration: 0.5, ease: "easeInOut"}}
+            className='fixed top-0 z-50 bg-primary w-full'>
+                <div className={clsx ('h-20 flex items-center justify-center px-5', active && 'hidden')}>
+                    <div className='w-[50%] flex justify-center items-center gap-2'>
+                        <img src={logo} className='size-16'/>
+                        <h1 className='text-2xl font-bold uppercase'>Boscomunich</h1>
+                    </div>
+                    <div className='w-[50%] flex justify-center gap-10 items-center font-medium text-[14px] sm:hidden md:hidden'>
+                        {
+                            links.map((link) => (
+                                <ScrollLink 
+                                key={link.id} 
+                                to={link.title}
+                                spy
+                                activeClass='active'
+                                className="relative cursor-pointer uppercase transition-all duration-500 hover:text-secondary after:content-[''] after:absolute after:h-0.5 after:-left-[10%] after:w-0 hover:after:w-[120%] after:bottom-0 after:bg-secondary after:transition-all after:duration-500">
+                                    {link.title}
+                                </ScrollLink>
                             ))
-                            }
-                    </motion.div>
+                        }
+                    </div>
+                    <div className='w-[50%] flex justify-end lg:hidden'>
+                        <AnimatedHamburgerButton active={active} setActive={setActive}/>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    );
+            </motion.section>
+            {active &&
+            <div className={clsx('fixed z-50 bg-primary h-0 w-0 lg:hidden flex flex-row-reverse sm:flex-col justify-center items-center', active && 'h-screen w-full')}>
+                <AnimatePresence>
+                <motion.div 
+                key={1}
+                variants={isMobile ?  slideIn('right') : slideIn( 'down') }
+                initial='hidden'
+                animate='show'
+                exit='exit'
+                className='relative h-[50%] w-full md:h-full md:w-[50%]'>
+                    <img src={illustration} className='w-full h-full'/>
+                    <div className={clsx('absolute right-5 top-3', !active && 'hidden')}>
+                        <AnimatedHamburgerButton active={active} setActive={setActive}/>
+                    </div>
+                </motion.div>
+                </AnimatePresence>
+                <AnimatePresence>
+                <motion.div
+                key={2}
+                variants={isMobile ?  slideIn('left') : slideIn( 'up') }
+                initial='hidden'
+                animate='show'
+                exit='exit'
+                className='h-[50%] w-full md:h-full md:w-[50%] flex flex-col items-center md:justify-center gap-4 text-2xl font-bold'>
+                    {
+                        links.map((link) => (
+                            <ScrollLink 
+                            onClick={() => setActive(false)}
+                            key={link.id} 
+                            to={link.title}
+                            spy
+                            activeClass='active'
+                            className="relative cursor-pointer uppercase transition-all duration-500 hover:text-secondary after:content-[''] after:absolute after:h-0.5 after:-left-[10%] after:w-0 hover:after:w-[120%] after:bottom-0 after:bg-secondary after:transition-all after:duration-500">
+                                {link.title}
+                            </ScrollLink>
+                        ))
+                    }
+                </motion.div>
+                </AnimatePresence>
+            </div>}
+        </>
+    )
 };
 
 export default Navbar;

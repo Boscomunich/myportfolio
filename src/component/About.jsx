@@ -1,40 +1,50 @@
 import profile from '../assets/profile.png'
+import { motion } from 'framer-motion'
+import { contentVariant, textVariant } from '../utils/motion';
+import Divider from './reusables/Divider'
 
 const About = () => {
     return (
-        <div className='bg-tertiary py-20' id="About">
-            <p className="text-center text-[24px] font-bold sm:font-medium sm:text-[16px] mt-10" >
-                    About Chidera
-            </p>
-            <div className="absolute flex justify-center w-[20%] sm:w-[40%] h-[20px] left-[40%] sm:left-[30%] items-center ">
-                <div className="h-[10px] border-secondary border-[2px] w-[35%] bg-secondary "></div>
-                <div className="h-[20px] border-secondary border-[2px] w-[30%] bg-secondary">
-                </div>
-                <div className="h-[10px] border-secondary border-[2px] w-[35%] bg-secondary ">
-                </div>
-            </div>
-            <div className='flex justify-center py-8 gap-10 items-center'>
-                <div className='w-[48vw] sm:w-[80vw] mt-10'>
-                    <p>
-                        I’m a full stack software engineer based in Nigeria
-                        <br/>
-                        <br/>
-                        I am passionate about creating real elegant looking website. Always keeping it clean and simple with added functionality of user interaction you would like to see.<br/><br/>
-                        <ul className="ul">
-                            <li>Front End Web Development</li>
-                            <li>Back End Web Development</li>
-                            <li>Web Design</li>
-                            <li>Mobile App Develooment</li>
-                            <li>Maintenace and Redesign of website</li>
-                        </ul>
-                    </p>
-                </div>
-                <div className='sm:hidden'>
-                    <div className='h-80 w-80 rounded-full bg-white flex justify-center items-center'>
-                        <img src={profile} className='w-60 h-60 rounded-full'/>
+        <div className='py-20' id="About">
+            <Divider>ABOUT</Divider>
+            <motion.div 
+            variants={contentVariant}
+            initial='hidden'
+            whileInView='show'
+            viewport={{ once: true }}
+            className='flex flex-col justify-center py-8 gap-5 items-center'>
+                <div className='flex sm:flex-col md:flex-col w-full h-auto py-5 justify-center items-center gap-5'>
+                    <div className='flex flex-col items-start justify-center gap-4 p-4 w-[40%] sm:w-[80%] md:w-[60%]'>
+                        <h1 className='text-xl font-medium text-secondary'>
+                            About Me
+                        </h1>
+                        <p>
+                            I’m Solomon Obuegbe, a passionate Full Stack Software Engineer with a diverse background in both technology and healthcare. I graduated from the ALX Software Engineering program, where I specialized in backend development, and I also hold a degree in Physiotherapy from Nnamdi Azikiwe University Nigeria. My journey from healthcare to tech has equipped me with a unique perspective on problem-solving and user-centric design.
+                        </p>
+                    </div>
+                    <div className='w-[40%] flex justify-center sm:hidden md:hidden'>
+                        <img src={profile} className='size-48'/>
                     </div>
                 </div>
-            </div>
+                <div className='flex sm:flex-col md:flex-col w-full h-auto py-5 justify-center items-start sm:items-center md:items-center gap-5'>
+                    <div className='flex flex-col items-start justify-center gap-4 p-4 w-[40%] sm:w-[80%] md:w-[60%]'>
+                        <h1 className='text-xl font-medium text-secondary'>
+                            My Journey
+                        </h1>
+                        <p>
+                            My career began in the healthcare sector, where I developed a deep understanding of patient care and the importance of seamless, user-friendly experiences. This foundation has greatly influenced my approach to software development. I transitioned into tech through the rigorous ALX SE program, where I honed my skills in both frontend and backend development.
+                        </p>
+                    </div>
+                    <div className='flex flex-col items-start justify-center gap-4 p-4 w-[40%] sm:w-[80%] md:w-[60%]'>
+                        <h1 className='text-xl font-medium text-secondary'>
+                            Let’s Connect
+                        </h1>
+                        <p>
+                            I’m excited about the opportunity to collaborate on projects that make a difference. Whether you’re looking for a developer to bring your vision to life or a team player to contribute to your next big idea, let’s connect and create something amazing together!
+                        </p>
+                    </div>
+                </div>
+            </motion.div>
         </div>
     );
 };

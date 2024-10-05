@@ -1,34 +1,49 @@
-import { services } from "../Constant";
-import SectionWrapper from "../Hoc/SectionWrapper";
+import { services, stacks } from "../Constant";
+import { Element } from "react-scroll";
+import Tilt from "./Tilt";
+import { motion } from 'framer-motion'
+import { textVariant } from "../utils/motion";
+import Divider from "./reusables/Divider";
 
 
 const Services = () => {
     return (
-        <div className="bg-primary py-20 relative w-full">
-            <h1 className="text-center text-[24px] font-bold sm:font-medium sm:text-[16px]">
-                    WHAT I DO
-                </h1>
-            <div className="absolute flex justify-center w-[20%] sm:w-[40%] h-[20px] left-[40%] sm:left-[30%] items-center ">
-                <div className="h-[10px] border-secondary border-[2px] w-[35%] bg-secondary "></div>
-                <div className="h-[20px] border-secondary border-[2px] w-[30%] bg-secondary">
-                </div>
-                <div className="h-[10px] border-secondary border-[2px] w-[35%] bg-secondary ">
-                </div>
-            </div>
-            <div className="w-full flex justify-around mt-[60px] mx-[px] sm:flex-col sm:justify-center sm:items-center gap-none">
-                {
-                    services.map((service, index) => (
-                        <div key={index} className="relative flex flex-col border-[1px] border-secondary w-[33%] sm:w-[80%] sm:my-[2px] items-center justify-center top-0 left-0 right-0 buttom-0 before:content-[''] before:absolute before:h-[8px] before:bg-primary before:w-[100%] before:-top-1 before:m-auto before:left-0 before:right-0 after:content-[''] after:absolute after:h-[8px] after:bg-primary after:w-[100%] after:-bottom-2 hover:before:w-[0%] before:transition-all before:duration-1000 hover:after:w-[0%] after:transition-all after:duration-1000">
-                            <img src={service.icon} alt="web services" height="150" width="150"/>
-                            <h1 className="text-center text-[20px] font-medium">{service.title}</h1>
-                            <br/>
-                            <p className="text-center p-[10px] sm:hid">{service.description}</p>
+        <Element name="Services">
+            <div className="bg-primary py-20 relative w-full">
+                <Divider>WHAT I DO</Divider>
+
+                <div className=" flex flex-col justify-center items-center relative mt-10">
+                    <div className="flex sm:flex-col md:flex-col justify-center item-center w-[80%] gap-5">
+                        {services.map(({ id, icon, title, description }) => (
+                        <div
+                        key={id}
+                        className="flex p-1 flex-col items-center w-full lg:w-[50%] card-wrapper"
+                        >
+                            <div className="card-content flex flex-col justify-center p-10 items-start mx-10">
+                                <div className="mb-12 flex items-center justify-center flex-col">
+                                    <img
+                                    src={icon}
+                                    className="size-28 object-contain"
+                                    alt={title}
+                                    />
+                                </div>
+                                <h1 className="text-2xl text-secondary font-bold">
+                                    {title}
+                                </h1>
+                                <p className="mb-11 body-1 max-md:mb-8 max-md:body-3">{description}
+                                </p>
+                            </div>
                         </div>
-                    ))
-                }
+                        ))}
+                    </div>
+                    <div className="relative w-[90%] flex flex-wrap justify-center rounded-xl gap-5">
+                        {stacks.map((content) => (
+                            <Tilt {...content}/>
+                        ))}
+                    </div>
+                </div>
             </div>
-            
-        </div>
+        </Element>
     );
 };
 

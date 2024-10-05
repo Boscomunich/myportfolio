@@ -1,133 +1,183 @@
-import { useState, useRef } from "react";
-import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
-import { SectionWrapper } from '../Hoc'
-import { slideIn } from "../utils/motion";
+import { motion } from "framer-motion";
+import { TiSocialFacebook, TiSocialLinkedin, TiSocialTwitter, TiSocialInstagram } from "react-icons/ti";
+import { useState } from "react";
+import Divider from "./reusables/Divider";
+import { FaXTwitter } from "react-icons/fa6";
+import Button from "./reusables/Button";
+
+const slidInBottom = {
+        hidden: { y: 100, opacity: 0},
+        show: {y: 0, opacity: 100,
+        transition:{
+            type: 'tween',
+            delay: 0.5,
+            duration: 1,
+        }
+    },
+}
+const slidInLeft = {
+        hidden: { x: -100, opacity: 0},
+        show: {x: 0, opacity: 100,
+        transition:{
+            type: 'tween',
+            delay: 0.5,
+            duration: 1,
+        }
+    },
+}
+const slidInRight = {
+        hidden: { x: 100, opacity: 0},
+        show: {x: 0, opacity: 100,
+        transition:{
+            type: 'tween',
+            delay: 0.5,
+            duration: 1,
+        }
+    },
+}
 
 const Contact = () => {
-    const formRef = useRef()
-    const [ form, setForm ] = useState({
-        name: '',
-        email: '',
-        message: ''
-    });
-    const [ loading, setLoading] = useState(false);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setForm({...form, [name]: value})
-    }
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setLoading(true)
-        emailjs.send('service_fnrqr8s', 'template_v6xiy8g',{
-            from_name: form.name,
-            to_name: 'solomon',
-            from_email: form.email,
-            to_email: 'solomon4chidera@gmail.com',
-            message: form.message
-        },
-        '3PC3g4_ExfxJyL2Zi'
-        )
-        .then(() => {
-            setLoading(false)
-            alert('I will get back to you in less than 6hrs')
-            setForm({
-                name:'',
-                email:'',
-                messge:''
-            })
-        }, (error) => {
-            setLoading(false)
-            console.log(error)
-            alert('something went wrong')
+    const [fullName, setFullName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phoneNo, setPhoneNo] = useState('')
+    const [subject, setSubject] = useState('')
+    const [message, setMessage] = useState('')
+
+
+    const handleSubmit = async () => {
+        try {
+        } catch (error) {
+            warning(error)
         }
-    )
-
     }
 
     return (
-        <section id="Contact">
-            <p className="text-center text-[24px] font-bold sm:font-medium sm:text-[16px]" >
-                    Get In Touch
-            </p>
-            <div className="absolute flex justify-center w-[20%] sm:w-[40%] h-[20px] left-[40%] sm:left-[30%] items-center ">
-                <div className="h-[10px] border-secondary border-[2px] w-[35%] bg-secondary "></div>
-                <div className="h-[20px] border-secondary border-[2px] w-[30%] bg-secondary">
-                </div>
-                <div className="h-[10px] border-secondary border-[2px] w-[35%] bg-secondary ">
-                </div>
-            </div>
-            <div className='mt-10   flex-col-reverse flex gap-10 sm:gap-20 overflow-hidden  lg:p-10 sm:p-0'>
-                <motion.div
-                variants={slideIn('left', 'tween', 0.2, 1)}
-                initial='hidden'
+        <div className="" id="contact">
+            <Divider>Contact</Divider>
+            <div className="md:flex-col-reverse sm:flex-col-reverse justify-center mx-4 my-10 gap-5 flex">
+                <motion.div 
+                variants={slidInLeft}
+                initial="hidden"
                 whileInView="show"
                 viewport={{once:true}}
-                className="flex-[0.75] bg-[#010313] p-8 sm:p-4">
-                    <h3 className='font-semibold text-center text-2xl'>
-                        Contact
-                    </h3>
-                    <form
-                    ref={formRef}
-                    onSubmit={handleSubmit}
-                    className="mt-0 flex flex-col gap-2">
-                        <label className="flex flex-col">
-                            <span className="text-white font-[400] mb-4">
-                                Your Name
-                            </span>
-                            <input
-                            type='text'
-                            name='name'
-                            value={form.name}
-                            onChange={handleChange}
-                            placeholder="what's your name"
-                            className="bg-tertiary py-4 px-6 placeholder:text-gray-400 text-white outline-none border-none font-[400]"
-                            />
-                        </label>
-                        <label className="flex flex-col">
-                            <span className="text-white font-[400] mb-4">
-                                Your Email
-                            </span>
-                            <input
-                            type='email'
-                            name='email'
-                            value={form.email}
-                            onChange={handleChange}
-                            placeholder="what's your email"
-                            className="bg-tertiary py-4 px-6 placeholder:text-gray-400 text-white outline-none border-none font-[400]"
-                            />
-                        </label>
-                        <label className="flex flex-col">
-                            <span className="text-white font-[400] mb-4">
-                                Your Message
-                            </span>
-                            <textarea
-                            rows='7'
-                            name='message'
-                            value={form.message}
-                            onChange={handleChange}
-                            placeholder="enter your message"
-                            className="bg-tertiary py-4 px-6 placeholder:text-gray-400 text-white outline-none border-none font-[400]"
-                            />
-                        </label>
-                        <button type='submit'
-                        className="bg-tertiary py-3 px-8 w-fit ou1tline-none font-[400] shadow-md shadow-primary">
-                            {loading? 'sending' : "send"}
-                        </button>
-                    </form>
+                className="w-[98%] lg:w-[30%] flex flex-col gap-7 p-10 rounded-md">
+                    <div>
+                        <div className="text-xl font-semibold">
+                            Email Address
+                        </div>
+                        <p className="text-lg font-medium text-gray-400">
+                            boscomunich@gmail.com
+                        </p>
+                    </div>
+                    <div>
+                        <div className="text-xl font-semibold">
+                            Phone Number
+                        </div>
+                        <p className="text-lg font-medium text-gray-400">            
+                            +2349030683225
+                        </p>
+                    </div>
+                    <div>
+                        <div className="text-xl font-semibold">
+                            Office
+                        </div>
+                        <p className="text-lg font-medium text-gray-400">            
+                            Lagos, Nigeria
+                        </p>
+                    </div>
+                    <div>
+                        <div className="text-xl font-semibold">
+                            Skype Email
+                        </div>
+                        <p className="text-lg font-medium text-gray-400">            
+                            boscomunich@gmail.com
+                        </p>
+                    </div>
+                    <hr/>
+                    <div className="text-xl font-semibold">
+                        Let’s Get Social
+                    </div>
+                    <div className="flex justify-start items-center gap-3">
+                        <TiSocialLinkedin className="h-12 w-12 hover:bg-primary hover:text-white rounded-full"/>
+                        <FaXTwitter className="h-10 w-10 hover:bg-primary hover:text-white rounded-full"/>
+                        <TiSocialInstagram className="h-10 w-10 hover:bg-primary hover:text-white rounded-full"/>
+                    </div>
                 </motion.div>
-                <motion.h1
-                variants={slideIn('left', 'tween', 0.2, 1)}
-                initial='hidden'
+                <motion.div 
+                variants={slidInRight}
+                initial="hidden"
                 whileInView="show"
                 viewport={{once:true}}
-                className=" lg:h-auto sm:h-[100px]  text-center">
-                    If you want to get in touch, talk to me about a project collaboration or just say hi, fill up the awesome form below or send an email to solomon4chidera@gmail.com and lets talk.
-                </motion.h1>
+                className="w-[98%] lg:w-[65%] flex flex-col gap-7 p-10 rounded-md">
+                    <div className="flex flex-col justify-center items-center gap-4">
+                        <div className="flex flex-wrap gap-5 justify-start sm:justify-center">
+                            <div className="flex flex-col gap-2 w-[47%]  min-w-[280px] sm:w-full">
+                                <label htmlFor="name" className="text-lg font-medium">
+                                    Full name
+                                </label>
+                                <input
+                                type='text'
+                                name='name'
+                                placeholder="David Wonder"
+                                className="border bg-rare border-rare py-4 px-4 focus:border-secondary outline-none rounded-md"
+                                onChange={(e) => setFullName(e.target.value)}/>
+                            </div>
+                            <div className="flex flex-col gap-2 w-[47%]  min-w-[280px] sm:w-full">
+                                <label htmlFor="email" className="text-lg font-medium">
+                                    Email Address
+                                </label>
+                                <input
+                                type='email'
+                                name='email'
+                                placeholder="DavidWonder@gmail.com"
+                                className="border border-rare py-4 px-4 focus:border-secondary bg-rare outline-none rounded-md"
+                                onChange={(e) => setEmail(e.target.value)}/>
+                            </div>
+                            <div className="flex flex-col gap-2 w-[47%]  min-w-[280px] sm:w-full">
+                                <label htmlFor="number" className="text-lg font-medium">
+                                    Phone Number <span className="font-light text-sm text-gray-400">(optional)</span>
+                                </label>
+                                <input
+                                type='number'
+                                name='number'
+                                placeholder="+1 63535464"
+                                className="border border-rare py-4 px-4 focus:border-secondary outline-none rounded-md bg-rare"
+                                onChange={(e) => setPhoneNo(e.target.value)}/>
+                            </div>
+                            <div className="flex flex-col gap-2 w-[47%]  min-w-[280px] sm:w-full">
+                                <label htmlFor="subject" className="text-lg font-medium">
+                                    Subject
+                                </label>
+                                <input
+                                type='text'
+                                name='subject'
+                                placeholder="Type your subject"
+                                className="border border-rare bg-rare py-4 px-4 focus:border-secondary outline-none rounded-md"
+                                onChange={(e) => setSubject(e.target.value)}/>
+                            </div>
+                            <div className="flex flex-col gap-2 w-[97%] sm:w-full">
+                                <label htmlFor="message" className="text-lg font-medium">
+                                    Message
+                                </label>
+                                <textarea
+                                type='text'
+                                name='message'
+                                rows="6"
+                                placeholder="Enter Your Message"
+                                className="border border-rare py-4 px-4 focus:border-secondary outline-none rounded-md bg-rare"
+                                onChange={(e) => setMessage(e.target.value)}/>
+                            </div>
+                        </div>
+                        <Button 
+                        containerClassName="bg-rare">
+                            Send Email
+                        </Button>
+                    </div>
+                </motion.div>
             </div>
-        </section>
+        </div>
     );
 };
 
-export default SectionWrapper(Contact); 
+export default Contact;
