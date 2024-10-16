@@ -1,16 +1,14 @@
 import { services, stacks } from "../Constant";
 import { Element } from "react-scroll";
 import Tilt from "./Tilt";
-import { motion } from 'framer-motion'
-import { textVariant } from "../utils/motion";
-import Divider from "./reusables/Divider";
+import Divider from "./reusables/Divider.jsx";
 
 
 const Services = () => {
     return (
         <Element name="Services">
             <div className="bg-primary py-20 relative w-full">
-                <Divider>WHAT I DO</Divider>
+                <Divider>services</Divider>
 
                 <div className=" flex flex-col justify-center items-center relative mt-10">
                     <div className="flex sm:flex-col md:flex-col justify-center item-center w-[80%] gap-5">

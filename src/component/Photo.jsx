@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { illustration } from '../assets';
+import { ME } from '../assets';
 
 const Photo = () => {
     return (
@@ -17,17 +17,17 @@ const Photo = () => {
                     opacity: 1,
                     transition: {delay:1, duration: 0.5, ease: "easeIn"}
                 }}
-                className='w-[298px] h-[298px] lg:w-[398px] lg:h-[398px] mt-10'>
-                    <img src={illustration} className='object-contain'/>
+                className='w-[298px] h-[298px]'>
+                    <img src={ ME } className='object-contain'/>
                 </motion.div>
                 <motion.svg 
-                className="w-[300px] lg:w-[406px] h-[300px] lg:h-[406px] absolute"
+                className=" w-[406px] h-[406px] absolute top-[1px]"
                 fill="transparent"
                 viewBox="0 0 506 506"
                 xmlns="http://www.w3.org/200/svg">
                     <motion.circle
                     cx="253"
-                    cy="253"
+                    cy="253"x
                     r="250"
                     stroke="#ecb34a"
                     strokeWidth="4"

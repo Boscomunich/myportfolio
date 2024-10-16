@@ -7,6 +7,7 @@ import { SectionWrapper } from '../Hoc';
 import { textVariant } from "../utils/motion";
 import Divider from "./reusables/Divider";
 
+
 const ExperienceCard = ({ experience }) => (
     <VerticalTimelineElement
         contentStyle={{ background: '#010313', color: '#fff'}}

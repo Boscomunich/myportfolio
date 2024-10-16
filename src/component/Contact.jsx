@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { TiSocialFacebook, TiSocialLinkedin, TiSocialTwitter, TiSocialInstagram } from "react-icons/ti";
 import { useState } from "react";
-import Divider from "./reusables/Divider";
 import { FaXTwitter } from "react-icons/fa6";
 import Button from "./reusables/Button";
+import Divider from "./reusables/Divider";
 
 const slidInBottom = {
         hidden: { y: 100, opacity: 0},
@@ -53,7 +53,7 @@ const Contact = () => {
     }
 
     return (
-        <div className="" id="contact">
+        <div className="pt-20" id="contact">
             <Divider>Contact</Divider>
             <div className="md:flex-col-reverse sm:flex-col-reverse justify-center mx-4 my-10 gap-5 flex">
                 <motion.div 
@@ -61,7 +61,7 @@ const Contact = () => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{once:true}}
-                className="w-[98%] lg:w-[30%] flex flex-col gap-7 p-10 rounded-md">
+                className="sm:hidden md:hidden lg:w-[30%] flex flex-col gap-7 p-10 rounded-md">
                     <div>
                         <div className="text-xl font-semibold">
                             Email Address

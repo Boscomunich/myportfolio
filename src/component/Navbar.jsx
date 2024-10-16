@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { MotionConfig, motion, useScroll, useMotionValue, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { links } from '../Constant';
 import {Link as ScrollLink} from 'react-scroll'
-import { illustration, logo } from '../assets'
+import { ME, logo } from '../assets'
 import { slideIn } from '../utils/motion';
 import clsx from 'clsx';
 
@@ -161,8 +161,8 @@ const Navbar = () => {
                 initial='hidden'
                 animate='show'
                 exit='exit'
-                className='relative h-[50%] w-full md:h-full md:w-[50%]'>
-                    <img src={illustration} className='w-full h-full'/>
+                className='relative h-[50%] w-full md:h-full sm:flex sm:justify-center md:w-[50%]'>
+                    <img src={ME} className='sm:w-[280px] sm:h-[300px] md:object-contain md:pt-20'/>
                     <div className={clsx('absolute right-5 top-3', !active && 'hidden')}>
                         <AnimatedHamburgerButton active={active} setActive={setActive}/>
                     </div>

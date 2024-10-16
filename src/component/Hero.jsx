@@ -7,9 +7,9 @@ import Photo from './Photo';
 
 const Hero = () => {
     return (
-        <section className='w-full h-screen sm:h-auto mx-auto relative' id="Home">
+        <section className='w-full h-screen sm:h-auto mx-auto' id="Home">
             <div className={`${styles.paddingX} inset-0 pt-[100px] sm:pt-[100px] flex justify-center items-center sm:flex-col sm:w-[100%]` }>
-                <div className=' flex flex-col w-[50%] h-full sm:w-[90%]'>
+                <div className=' flex flex-col w-[50%] h-full sm:w-[90%] mt-5'>
                     <p className='font-sans mb-2 '>
                         Fullstack Software Engineer
                     </p>
@@ -44,7 +44,7 @@ const Hero = () => {
                             </Button>
                         </Link>
                 </div>
-                <div className='w-[50%] h-full'>
+                <div className='w-[50%] h-full md:w-50% sm:mt-10'>
                     <Photo/>
                 </div>
             </div>

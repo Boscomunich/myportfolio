@@ -21,13 +21,14 @@ import menu from './menu.png';
 import cancel from './cancel.png';
 import alx from './company/alx.jpg';
 import ztm from './company/ztm.jpg';
-import illustration from './illustration.svg'
 import flutter from './tech/flutter.png'
 import dart from './tech/dart.png'
 import postgresql from './tech/postgresql.png'
 import pricy from './pricy.png'
 import webbase from './webbase-shot.png'
 import link from './link.png'
+import ME from './mypic.png'
+import about from './about.png'
 
 
 export{
@@ -54,11 +55,12 @@ export{
     cancel,
     alx,
     ztm,
-    illustration,
+    ME,
     postgresql,
     flutter,
     dart,
     pricy,
     webbase,
-    link
+    link,
+    about
 };

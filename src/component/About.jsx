@@ -1,18 +1,18 @@
-import profile from '../assets/profile.png'
+import { about } from '../assets'
 import { motion } from 'framer-motion'
-import { contentVariant, textVariant } from '../utils/motion';
-import Divider from './reusables/Divider'
+import { contentVariant } from '../utils/motion';
+import Divider from './reusables/Divider';
 
 const About = () => {
     return (
-        <div className='py-20' id="About">
-            <Divider>ABOUT</Divider>
+        <div className='pt-20' id="About">
+            <Divider>About</Divider>
             <motion.div 
             variants={contentVariant}
             initial='hidden'
             whileInView='show'
             viewport={{ once: true }}
-            className='flex flex-col justify-center py-8 gap-5 items-center'>
+            className='flex flex-col justify-center gap-5 items-center'>
                 <div className='flex sm:flex-col md:flex-col w-full h-auto py-5 justify-center items-center gap-5'>
                     <div className='flex flex-col items-start justify-center gap-4 p-4 w-[40%] sm:w-[80%] md:w-[60%]'>
                         <h1 className='text-xl font-medium text-secondary'>
@@ -22,8 +22,8 @@ const About = () => {
                             I’m Solomon Obuegbe, a passionate Full Stack Software Engineer with a diverse background in both technology and healthcare. I graduated from the ALX Software Engineering program, where I specialized in backend development, and I also hold a degree in Physiotherapy from Nnamdi Azikiwe University Nigeria. My journey from healthcare to tech has equipped me with a unique perspective on problem-solving and user-centric design.
                         </p>
                     </div>
-                    <div className='w-[40%] flex justify-center sm:hidden md:hidden'>
-                        <img src={profile} className='size-48'/>
+                    <div className='w-[40%] h-[50vh] flex justify-center sm:hidden md:hidden'>
+                        <img src={about} className='object-contain'/>
                     </div>
                 </div>
                 <div className='flex sm:flex-col md:flex-col w-full h-auto py-5 justify-center items-start sm:items-center md:items-center gap-5'>
