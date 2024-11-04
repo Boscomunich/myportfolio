@@ -11,13 +11,13 @@ const Services = () => {
                 <Divider>services</Divider>
 
                 <div className=" flex flex-col justify-center items-center relative mt-10">
-                    <div className="flex sm:flex-col md:flex-col justify-center item-center w-[80%] gap-5">
+                    <div className="flex sm:flex-col md:flex-col justify-center item-center w-[80%] sm:w-[95%] gap-5">
                         {services.map(({ id, icon, title, description }) => (
                         <div
                         key={id}
                         className="flex p-1 flex-col items-center w-full lg:w-[50%] card-wrapper"
                         >
-                            <div className="card-content flex flex-col justify-center p-10 items-start mx-10">
+                            <div className="card-content flex flex-col justify-center sm:p-5 p-10 items-start sm:mx-4 mx-10">
                                 <div className="mb-12 flex items-center justify-center flex-col">
                                     <img
                                     src={icon}
@@ -34,9 +34,9 @@ const Services = () => {
                         </div>
                         ))}
                     </div>
-                    <div className="relative w-[90%] flex flex-wrap justify-center rounded-xl gap-5">
-                        {stacks.map((content) => (
-                            <Tilt {...content}/>
+                    <div className="relative w-[90%] sm:w-full flex flex-wrap justify-center rounded-xl gap-5">
+                        {stacks.map((content, index) => (
+                            <Tilt {...content} key={index}/>
                         ))}
                     </div>
                 </div>

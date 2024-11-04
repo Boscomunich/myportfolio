@@ -17,11 +17,11 @@ const Photo = () => {
                     opacity: 1,
                     transition: {delay:1, duration: 0.5, ease: "easeIn"}
                 }}
-                className='w-[298px] h-[298px]'>
+                className='w-[298px] h-[298px] sm:w-[100%] sm:h-[100%]'>
                     <img src={ ME } className='object-contain'/>
                 </motion.div>
                 <motion.svg 
-                className=" w-[406px] h-[406px] absolute top-[1px]"
+                className=" w-[130%] h-[130%] sm:w-[150%] sm:h-[150%] absolute top-0"
                 fill="transparent"
                 viewBox="0 0 506 506"
                 xmlns="http://www.w3.org/200/svg">

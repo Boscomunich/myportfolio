@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaXTwitter } from "react-icons/fa6";
 import Button from "./reusables/Button";
 import Divider from "./reusables/Divider";
+import emailjs from '@emailjs/browser';
 
 const slidInBottom = {
         hidden: { y: 100, opacity: 0},
@@ -43,17 +44,39 @@ const Contact = () => {
     const [phoneNo, setPhoneNo] = useState('')
     const [subject, setSubject] = useState('')
     const [message, setMessage] = useState('')
+    const [loading, setLoading] = useState(false)
 
 
     const handleSubmit = async () => {
+        if (!email || !fullName || !subject || !message) {
+            return console.log('all fields are required')
+        }
+
+        emailjs.init('3PC3g4_ExfxJyL2Zi');
+        
+        setLoading(true)
+        const templateParams = {
+            name: fullName,
+            email: email,
+            subject: subject,
+            message: message
+        }
+
         try {
+            await emailjs.send(
+            'service_fnrqr8s',
+            'template_v6xiy8g',
+            templateParams
+            )
         } catch (error) {
-            warning(error)
+            console.log(error)
+        } finally {
+            setLoading(false)
         }
     }
 
     return (
-        <div className="pt-20" id="contact">
+        <div className="pt-20" id="Contact">
             <Divider>Contact</Divider>
             <div className="md:flex-col-reverse sm:flex-col-reverse justify-center mx-4 my-10 gap-5 flex">
                 <motion.div 
@@ -61,7 +84,7 @@ const Contact = () => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{once:true}}
-                className="sm:hidden md:hidden lg:w-[30%] flex flex-col gap-7 p-10 rounded-md">
+                className="sm:hidden md:hidden lg:w-[30%] flex flex-col gap-7 p-10 rounded-md bg-rare">
                     <div>
                         <div className="text-xl font-semibold">
                             Email Address
@@ -99,9 +122,9 @@ const Contact = () => {
                         Let’s Get Social
                     </div>
                     <div className="flex justify-start items-center gap-3">
-                        <TiSocialLinkedin className="h-12 w-12 hover:bg-primary hover:text-white rounded-full"/>
-                        <FaXTwitter className="h-10 w-10 hover:bg-primary hover:text-white rounded-full"/>
-                        <TiSocialInstagram className="h-10 w-10 hover:bg-primary hover:text-white rounded-full"/>
+                        <TiSocialLinkedin className="h-12 w-12 hover:text-secondary rounded-full"/>
+                        <FaXTwitter className="h-10 w-10 hover:text-secondary rounded-full"/>
+                        <TiSocialInstagram className="h-10 w-10 hover:text-secondary rounded-full"/>
                     </div>
                 </motion.div>
                 <motion.div 
@@ -109,7 +132,7 @@ const Contact = () => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{once:true}}
-                className="w-[98%] lg:w-[65%] flex flex-col gap-7 p-10 rounded-md">
+                className="w-[98%] lg:w-[65%] flex flex-col gap-7 p-10 rounded-md bg-rare">
                     <div className="flex flex-col justify-center items-center gap-4">
                         <div className="flex flex-wrap gap-5 justify-start sm:justify-center">
                             <div className="flex flex-col gap-2 w-[47%]  min-w-[280px] sm:w-full">
@@ -120,7 +143,7 @@ const Contact = () => {
                                 type='text'
                                 name='name'
                                 placeholder="David Wonder"
-                                className="border bg-rare border-rare py-4 px-4 focus:border-secondary outline-none rounded-md"
+                                className="border bg-primary border-primary py-4 px-4 focus:border-secondary outline-none rounded-md"
                                 onChange={(e) => setFullName(e.target.value)}/>
                             </div>
                             <div className="flex flex-col gap-2 w-[47%]  min-w-[280px] sm:w-full">
@@ -131,7 +154,7 @@ const Contact = () => {
                                 type='email'
                                 name='email'
                                 placeholder="DavidWonder@gmail.com"
-                                className="border border-rare py-4 px-4 focus:border-secondary bg-rare outline-none rounded-md"
+                                className="border border-primary py-4 px-4 focus:border-secondary bg-primary outline-none rounded-md"
                                 onChange={(e) => setEmail(e.target.value)}/>
                             </div>
                             <div className="flex flex-col gap-2 w-[47%]  min-w-[280px] sm:w-full">
@@ -142,7 +165,7 @@ const Contact = () => {
                                 type='number'
                                 name='number'
                                 placeholder="+1 63535464"
-                                className="border border-rare py-4 px-4 focus:border-secondary outline-none rounded-md bg-rare"
+                                className="border border-primary py-4 px-4 focus:border-secondary outline-none rounded-md bg-primary"
                                 onChange={(e) => setPhoneNo(e.target.value)}/>
                             </div>
                             <div className="flex flex-col gap-2 w-[47%]  min-w-[280px] sm:w-full">
@@ -153,7 +176,7 @@ const Contact = () => {
                                 type='text'
                                 name='subject'
                                 placeholder="Type your subject"
-                                className="border border-rare bg-rare py-4 px-4 focus:border-secondary outline-none rounded-md"
+                                className="border border-primary bg-primary py-4 px-4 focus:border-secondary outline-none rounded-md"
                                 onChange={(e) => setSubject(e.target.value)}/>
                             </div>
                             <div className="flex flex-col gap-2 w-[97%] sm:w-full">
@@ -165,13 +188,14 @@ const Contact = () => {
                                 name='message'
                                 rows="6"
                                 placeholder="Enter Your Message"
-                                className="border border-rare py-4 px-4 focus:border-secondary outline-none rounded-md bg-rare"
+                                className="border border-primary py-4 px-4 focus:border-secondary outline-none rounded-md bg-primary"
                                 onChange={(e) => setMessage(e.target.value)}/>
                             </div>
                         </div>
                         <Button 
-                        containerClassName="bg-rare">
-                            Send Email
+                        containerClassName="bg-primary"
+                        onClick={() => handleSubmit()}>
+                            {loading ? 'Sending..' : 'Send Email'}
                         </Button>
                     </div>
                 </motion.div>

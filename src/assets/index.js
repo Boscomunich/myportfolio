@@ -29,6 +29,7 @@ import webbase from './webbase-shot.png'
 import link from './link.png'
 import ME from './mypic.png'
 import about from './about.png'
+import insync from './projects/insync.png'
 
 
 export{
@@ -62,5 +63,6 @@ export{
     pricy,
     webbase,
     link,
-    about
+    about,
+    insync
 };

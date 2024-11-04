@@ -127,11 +127,11 @@ const Navbar = () => {
             variants={VARIANTS.foldNav}
             animate={hidden ? "folded" : 'visible'}
             transition={{duration: 0.5, ease: "easeInOut"}}
-            className='fixed top-0 z-50 bg-primary w-full'>
+            className='fixed top-0 z-[10000] bg-primary w-full'>
                 <div className={clsx ('h-20 flex items-center justify-center px-5', active && 'hidden')}>
-                    <div className='w-[50%] flex justify-center items-center gap-2'>
-                        <img src={logo} className='size-16'/>
-                        <h1 className='text-2xl font-bold uppercase'>Boscomunich</h1>
+                    <div className='w-[50%] flex justify-center items-center sn:gap-1 gap-2'>
+                        <img src={logo} className='size-16 sm:size-14'/>
+                        <h1 className='text-2xl font-bold uppercase sm:text-lg'>Boscomunich</h1>
                     </div>
                     <div className='w-[50%] flex justify-center gap-10 items-center font-medium text-[14px] sm:hidden md:hidden'>
                         {
@@ -175,7 +175,7 @@ const Navbar = () => {
                 initial='hidden'
                 animate='show'
                 exit='exit'
-                className='h-[50%] w-full md:h-full md:w-[50%] flex flex-col items-center md:justify-center gap-4 text-2xl font-bold'>
+                className='h-[50%] w-full md:h-full md:w-[50%] flex flex-col items-center sm:justify-end sm:pb-5 md:justify-center gap-4 sm:gap-2 text-2xl sm:text-lg sm:font-[500] font-bold'>
                     {
                         links.map((link) => (
                             <ScrollLink 

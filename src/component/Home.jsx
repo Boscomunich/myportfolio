@@ -4,6 +4,7 @@ import Services from './Services'
 import Contact from './Contact'
 import About from './About'
 import Faq from './Faq'
+import Work from './Work'
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
     className='bg-primary relative'>
         <Hero />
         <Services />
+        <Work/>
         <Experience/>
         <About/>
         <Faq/>

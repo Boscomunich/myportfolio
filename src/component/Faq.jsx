@@ -31,8 +31,8 @@ const FAQItem = ({ question, ans }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className={clsx ("sm:w-full border-rare border shadow-xl rounded-xl px-7 w-[40%] cursor-pointer", isOpen && 'bg-rare')}>
-            <div className='flex items-center justify-between h-20 px-7'
+        <div className={clsx ("sm:w-full border-rare border shadow-xl rounded-xl px-7 sm:px-4 w-[40%] cursor-pointer", isOpen && 'bg-rare')}>
+            <div className='flex items-center justify-between h-20 px-7 sm:px-3'
             onClick={() => setIsOpen(!isOpen)}>
                 <div
                     className={clsx ("text-xl font-medium w-[80%]", isOpen && 'text-secondary transition-colors duration-300')}
@@ -47,7 +47,7 @@ const FAQItem = ({ question, ans }) => {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
                 transition={{ duration: 0.5 }}
-                className="overflow-hidden px-7 pb-7"
+                className="overflow-hidden px-7 sm:px-3 pb-7"
             >
                 <p className="mt-2">{ans}</p>
             </motion.div>
@@ -58,7 +58,7 @@ const FAQItem = ({ question, ans }) => {
 const Faq = () => {
 
     return (
-        <section id='Faq'>
+        <section id='Faq' className='mt-20'>
         <Divider>FAQ</Divider>
             <div className='flex flex-wrap w-full sm:flex-col justify-center px-5 items-start gap-4 mt-20'>
                 {

@@ -2,27 +2,11 @@ import { DiRedis } from "react-icons/di";
 import {
   frontend,
   backend,
-  mobile,
-  javascript,
-  typescript,
-  html,
-  css,
-  reactjs,
-  redux,
-  tailwind,
-  nodejs,
-  mongodb,
-  git,
-  figma,
-  threejs,
-  python,
   alx,
   ztm,
-  postgresql,
-  flutter,
-  dart,
+  insync,
   pricy,
-  webbase
+  webbase,
 } from "../assets";
 
 import { FaLinkedin, FaInstagram, FaNodeJs, FaAws, FaServer  } from "react-icons/fa";
@@ -285,5 +269,31 @@ const experiences = [
   },
 ];
 
+const works = [
+  {
+    title: 'Insync',
+    description: 'a project management app',
+    image: insync,
+    github: '',
+    live: '',
 
-export { services, technologies, links, socials, experiences, stacks};
+  },
+  {
+    title: 'Pricy',
+    description: 'a project management app',
+    image: pricy,
+    github: '',
+    live: '',
+
+  },
+  {
+    title: 'Webbase',
+    description: 'a project management app',
+    image: webbase,
+    github: '',
+    live: '',
+
+  }
+]
+
+export { services, technologies, links, socials, experiences, stacks, works };

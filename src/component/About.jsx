@@ -5,7 +5,7 @@ import Divider from './reusables/Divider';
 
 const About = () => {
     return (
-        <div className='pt-20' id="About">
+        <div className='pt-20 bg-rare' id="About">
             <Divider>About</Divider>
             <motion.div 
             variants={contentVariant}

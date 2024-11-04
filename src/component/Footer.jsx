@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
-import Tech from './Techs'
+import { logo } from '../assets'
+
 
 export default function Footer () {
     return (
-        <div className="stcky bottom-0 z-[-100] flex justify-between w-full pt-10">
-            <div className=" lg:w-[60%] w-full ">
-                Footer
+        <div className="flex justify-start items-center gap-5 w-full pt-10">
+            <div>
+                <img src={logo} className='size-24'/>
             </div>
-            <div className="lg:w-[40%] w-full">
-                <Tech/>
-            </div>
+            <h1
+            className=" gap-2 text-lg font-[400] text-gray-400">
+                &copy; 2024 Boscomunich. All rights reserved.
+            </h1>
         </div>
     )
 }

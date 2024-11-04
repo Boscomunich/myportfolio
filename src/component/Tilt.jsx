@@ -46,7 +46,7 @@ const Tilt = ({name, id, list}) => {
     };
 
     return (
-        <div className="flex w-auto justify-ceneter flex-wrap px-4 py-12">
+        <div className="flex w-auto justify-ceneter flex-wrap py-7">
         <motion.div
         ref={ref}
         onMouseMove={handleMouseMove}
