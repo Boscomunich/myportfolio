@@ -1,6 +1,6 @@
 import { styles } from '../styles'
 import { socials } from '../Constant'
-import { Link } from 'react-router-dom';
+import {Link} from 'react-scroll'
 import Button from './reusables/Button';
 import Photo from './Photo';
 
@@ -38,7 +38,7 @@ const Hero = () => {
                         ))
                     }
                     </div>
-                        <Link to='#project'>
+                        <Link to='Work'>
                             <Button containerClassName='bg-rare'> 
                                 View My Work
                             </Button>

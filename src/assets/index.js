@@ -30,6 +30,10 @@ import link from './link.png'
 import ME from './mypic.png'
 import about from './about.png'
 import insync from './projects/insync.png'
+import blockdocs from './blockdocs.png'
+import carepulse from './carepulse.png'
+import xora from './xora.png'
+import calendlink from './calendlink.png'
 
 
 export{
@@ -64,5 +68,9 @@ export{
     webbase,
     link,
     about,
-    insync
+    insync,
+    blockdocs,
+    carepulse,
+    xora,
+    calendlink
 };
