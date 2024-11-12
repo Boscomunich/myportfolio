@@ -5,11 +5,9 @@ import {
   alx,
   ztm,
   insync,
-  pricy,
   webbase,
   xora,
   calendlink,
-  github,
   blockdocs,
   carepulse,
 } from "../assets";
@@ -292,22 +290,22 @@ const works = [
     ]
   },
 
-  {
-    title: 'Insync',
-    description: 'a project management app',
-    image: insync,
-    github: 'https://github.com/Boscomunich/task-manager',
-    live: 'https://insync-vg0w.onrender.com',
-    technologies: [
-      'React',
-      'GraphqlClient',
-      'Expressjs',
-      'Graphql',
-      'Prisma',
-      'Postgres'
-    ],
-    detailedDescription: 'Insync is a dynamic project management app designed to streamline your workflow and enhance team collaboration. With real-time updates, intuitive task tracking, and seamless integration with popular tools, Insync ensures that your projects stay on track and your team stays in sync.',
-  },
+  // {
+  //   title: 'Insync',
+  //   description: 'a project management app',
+  //   image: insync,
+  //   github: 'https://github.com/Boscomunich/task-manager',
+  //   live: 'https://insync-vg0w.onrender.com',
+  //   technologies: [
+  //     'React',
+  //     'GraphqlClient',
+  //     'Expressjs',
+  //     'Graphql',
+  //     'Prisma',
+  //     'Postgres'
+  //   ],
+  //   detailedDescription: 'Insync is a dynamic project management app designed to streamline your workflow and enhance team collaboration. With real-time updates, intuitive task tracking, and seamless integration with popular tools, Insync ensures that your projects stay on track and your team stays in sync.',
+  // },
 
   {
     title: 'Xora',

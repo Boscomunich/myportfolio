@@ -46,13 +46,13 @@ const ProjectDetail = () => {
                 </div>
                 <div className='w-[50%] sm:w-full flex flex-col gap-4'>
                     <Divider>Description</Divider>
-                    <h1 className='font-[500] text-xl text-center'>
+                    <h1 className='font-[400] text-[16px] text-center'>
                         {project.detailedDescription}
                     </h1>
                 </div>
             </div>
             <div className='w-full flex justify-center'>
-                <div className='pt-10 flex justify-center gap-4'>
+                <div className='pt-10 flex justify-center gap-4 px-5'>
                     <a
                     href={project.github}
                     target='_blank' 

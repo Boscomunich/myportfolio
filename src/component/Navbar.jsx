@@ -175,7 +175,7 @@ const Navbar = () => {
                 initial='hidden'
                 animate='show'
                 exit='exit'
-                className='h-[50%] w-full md:h-full md:w-[50%] flex flex-col items-center sm:justify-end sm:pb-5 md:justify-center gap-4 sm:gap-2 text-2xl sm:text-lg sm:font-[500] font-bold'>
+                className='h-[50%] w-full md:h-full md:w-[50%] flex flex-col items-center sm:justify-center sm:pb-5 md:justify-center gap-4 sm:gap-2 text-2xl sm:text-lg sm:font-[500] font-bold'>
                     {
                         links.map((link) => (
                             <ScrollLink 
